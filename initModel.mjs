@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { ChatOpenAI } from '@langchain/openai';
+import { ChatOpenAI, OpenAIEmbeddings } from '@langchain/openai';
 
 
 
@@ -13,6 +13,18 @@ export default ({
         temperature,
         configuration: {
             baseURL: process.env.OPENAI_BASE_URL,
+        }
+    })
+}
+
+
+
+export const initEmbeddings = () => {
+    return new OpenAIEmbeddings({
+        apiKey: process.env.EMBEDDING_API_KEY,
+        model: process.env.EMBEDDING_MODEL,
+        configuration: {
+            baseURL: process.env.EMBEDDING_BASE_URL
         }
     })
 }
