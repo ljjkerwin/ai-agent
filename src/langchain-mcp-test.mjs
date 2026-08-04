@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { MultiServerMCPClient } from '@langchain/mcp-adapters'
 import chalk from 'chalk'
-import initModel from './initModel.mjs'
+import initModel from '../initModel.mjs'
 import { HumanMessage, ToolMessage } from '@langchain/core/messages'
 
 
