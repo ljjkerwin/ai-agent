@@ -1,12 +1,12 @@
 import 'dotenv/config'
-import initModel from '../initModel.mjs'
+import getModel from '../utils/getModel.mts'
 import { OpenAIEmbeddings } from '@langchain/openai'
 import { Document } from '@langchain/core/documents'
 import { MemoryVectorStore } from '@langchain/classic/vectorstores/memory'
 
 
 
-const model = initModel()
+const model = getModel()
 
 const embeddings = new OpenAIEmbeddings({
     apiKey: process.env.EMBEDDING_API_KEY,

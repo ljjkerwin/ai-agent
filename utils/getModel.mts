@@ -19,12 +19,15 @@ export default ({
 
 
 
-export const initEmbeddings = () => {
+export const getEmbeddings = ({
+    dimensions = 1024
+} = {}) => {
     return new OpenAIEmbeddings({
         apiKey: process.env.EMBEDDING_API_KEY,
         model: process.env.EMBEDDING_MODEL,
         configuration: {
             baseURL: process.env.EMBEDDING_BASE_URL
-        }
+        },
+        dimensions,
     })
 }

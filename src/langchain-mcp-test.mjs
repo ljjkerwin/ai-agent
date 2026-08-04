@@ -1,11 +1,11 @@
 import 'dotenv/config'
 import { MultiServerMCPClient } from '@langchain/mcp-adapters'
 import chalk from 'chalk'
-import initModel from '../initModel.mjs'
+import getModel from '../utils/getModel.mts'
 import { HumanMessage, ToolMessage } from '@langchain/core/messages'
 
 
-const model = initModel()
+const model = getModel()
 
 const mcpClient = new MultiServerMCPClient({
     mcpServers: {

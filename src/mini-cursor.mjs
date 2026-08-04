@@ -1,11 +1,11 @@
 import 'dotenv/config'
-import initModel from './initModel.mjs'
+import getModel from './utils/getModel.mts'
 import { SystemMessage, HumanMessage, ToolMessage } from '@langchain/core/messages'
 import { tools } from './all-tools.mjs'
 import chalk from 'chalk'
 
 
-const model = initModel()
+const model = getModel()
 
 const modelWithTools = model.bindTools(tools)
 

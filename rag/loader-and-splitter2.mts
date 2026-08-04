@@ -1,13 +1,13 @@
 import { RecursiveCharacterTextSplitter } from "@langchain/classic/text_splitter";
 import { CheerioWebBaseLoader } from "@langchain/community/document_loaders/web/cheerio";
-import initModel, { initEmbeddings } from "../initModel.mjs";
+import getModel, { getEmbeddings } from "../utils/getModel.mts";
 import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
 
 
 
-const model = initModel()
+const model = getModel()
 
-const embeddings = initEmbeddings()
+const embeddings = getEmbeddings()
 
 
 
@@ -28,13 +28,14 @@ console.log(`total characters: ${documents[0].pageContent.length}`)
 const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 400,
     chunkOverlap: 50,
-    separators: ['。', '！', '？'],
-
+    // separators: ["\n\n", "\n", " ", ""]
+    separators: ["，", "\n", " ", ""]
 })
 
 const splitDocuments = await textSplitter.splitDocuments(documents)
 
 console.log(`文档分割完成，共 ${splitDocuments.length} 个分块`)
+// console.log(splitDocuments)
 
 const vectorStore = await MemoryVectorStore.fromDocuments(
     splitDocuments,
@@ -43,8 +44,6 @@ const vectorStore = await MemoryVectorStore.fromDocuments(
 
 console.log('向量数据库构建完成')
 
-
-const retriever = vectorStore.asRetriever({ k: 3 })
 
 const questions = [
     '父亲的去世对作者的人生态度产生了怎样的根本性逆转'

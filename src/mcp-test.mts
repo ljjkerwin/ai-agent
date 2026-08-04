@@ -1,9 +1,9 @@
 import { MultiServerMCPClient } from "@langchain/mcp-adapters";
-import initModel from "./initModel.mjs";
+import getModel from "../utils/getModel.mts";
 import { BaseMessage, HumanMessage, ToolMessage } from "@langchain/core/messages";
 import chalk from "chalk";
 
-const model = initModel()
+const model = getModel()
 
 const mcpClient = new MultiServerMCPClient({
     mcpServers: {

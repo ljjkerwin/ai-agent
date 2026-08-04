@@ -1,11 +1,11 @@
-import initModel from './initModel.mjs'
+import getModel from './utils/getModel.mts'
 import { tool } from '@langchain/core/tools'
 import { HumanMessage, SystemMessage, ToolMessage } from '@langchain/core/messages'
 import fs from 'node:fs/promises'
 import { z } from 'zod'
 
 
-const model = initModel()
+const model = getModel()
 
 const readFileTool = tool(
     async ({ read_file }) => {
