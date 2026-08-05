@@ -13,6 +13,11 @@ export default ({
         temperature,
         configuration: {
             baseURL: process.env.OPENAI_BASE_URL,
+        },
+        modelKwargs: {
+            thinking: {
+                type: 'disabled',
+            }
         }
     })
 }
