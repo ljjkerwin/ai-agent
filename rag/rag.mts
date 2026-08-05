@@ -1,6 +1,6 @@
 import { MetricType } from "@zilliz/milvus2-sdk-node";
 import getMilvusClient from "../utils/getMilvusClient.mts";
-import getModel, { getEmbeddings } from "../utils/getModel.mts";
+import getModel, { getEmbeddingModel } from "../utils/getModel.mts";
 
 const COLLECTION_NAME = 'ai_diary'
 
@@ -8,7 +8,7 @@ const model = getModel({
     temperature: 0.7
 })
 
-const embeddings = getEmbeddings()
+const embeddings = getEmbeddingModel()
 
 const milvusClient = getMilvusClient()
 

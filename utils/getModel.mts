@@ -19,7 +19,7 @@ export default ({
 
 
 
-export const getEmbeddings = ({
+export const getEmbeddingModel = ({
     dimensions = 1024
 } = {}) => {
     return new OpenAIEmbeddings({

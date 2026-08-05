@@ -1,11 +1,11 @@
-import { getEmbeddings } from "../utils/getModel.mts";
+import { getEmbeddingModel } from "../utils/getModel.mts";
 import getMilvusClient from "../utils/getMilvusClient.mts";
 import { MetricType } from "@zilliz/milvus2-sdk-node";
 
 
 const COLLECTION_NAME = 'ai_diary'
 
-const embeddings = getEmbeddings()
+const embeddings = getEmbeddingModel()
 
 const milvusClient = getMilvusClient()
 

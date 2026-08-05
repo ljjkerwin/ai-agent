@@ -1,13 +1,13 @@
 import { RecursiveCharacterTextSplitter } from "@langchain/classic/text_splitter";
 import { CheerioWebBaseLoader } from "@langchain/community/document_loaders/web/cheerio";
-import getModel, { getEmbeddings } from "../utils/getModel.mts";
+import getModel, { getEmbeddingModel } from "../utils/getModel.mts";
 import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
 
 
 
 const model = getModel()
 
-const embeddings = getEmbeddings()
+const embeddings = getEmbeddingModel()
 
 
 

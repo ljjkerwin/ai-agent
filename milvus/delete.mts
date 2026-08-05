@@ -1,7 +1,7 @@
 import { DataType, IndexType, MetricType, MilvusClient } from "@zilliz/milvus2-sdk-node"
 
 import getMilvusClient from '../utils/getMilvusClient.mts'
-import { getEmbeddings } from "../utils/getModel.mts"
+import { getEmbeddingModel } from "../utils/getModel.mts"
 
 const COLLECTION_NAME = 'ai_diary'
 

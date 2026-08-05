@@ -1,13 +1,13 @@
 import { DataType, IndexType, MetricType, MilvusClient } from "@zilliz/milvus2-sdk-node"
 
 import getMilvusClient from '../utils/getMilvusClient.mts'
-import { getEmbeddings } from "../utils/getModel.mts"
+import { getEmbeddingModel } from "../utils/getModel.mts"
 
 const COLLECTION_NAME = 'ai_diary'
 
 const VECTOR_DIM = 1024 // Embedding 输出向量的维度
 
-const embeddings = getEmbeddings({
+const embeddings = getEmbeddingModel({
     dimensions: 1024
 })
 
