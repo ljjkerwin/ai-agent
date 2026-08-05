@@ -1,0 +1,38 @@
+import 'dotenv/config';
+import { StructuredOutputParser } from "@langchain/core/output_parsers";
+import { PromptTemplate } from "@langchain/core/prompts";
+import { ChatOpenAI } from "@langchain/openai";
+import { z } from "zod";
+import getModel from '../utils/getModel.mts';
+
+const model = getModel()
+
+
+const schema = z.object({
+    translation: z.string().describe("翻译后的英文文本"),
+    keywords: z.array(z.string()).length(3).describe("3个关键词")
+})
+
+
+const outputParser = StructuredOutputParser.fromZodSchema(schema)
+
+const promptTemplate = PromptTemplate.fromTemplate(
+    '将以下文本翻译成英文，然后总结为3个关键词。\n\n文本：{text}\n\n{format_instructions}'
+)
+
+
+const input = {
+    text: 'LangChain 是一个强大的 AI 应用开发框架',
+    format_instructions: outputParser.getFormatInstructions()
+}
+
+
+const formattedPrompt = await promptTemplate.format(input)
+
+const response = await model.invoke(formattedPrompt)
+
+
+console.log('response', response)
+
+
+console.log('result', await outputParser.invoke(response))
