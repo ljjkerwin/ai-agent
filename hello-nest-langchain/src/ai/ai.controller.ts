@@ -40,4 +40,6 @@ export class AiController {
     )
   }
   // curl -N -G "http://localhost:3000/ai/cron/chat/stream" --data-urlencode "query=用户001的消息"
+  // curl -N -G "http://localhost:3000/ai/cron/chat/stream" --data-urlencode "query=用户001的消息，发送到邮箱 ljjnotice@163.com"
+  // 搜索今天早上的a股新闻，整理成html，发送到我的邮箱ljjnotice@163.com
 }

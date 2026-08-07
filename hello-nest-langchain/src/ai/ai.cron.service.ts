@@ -57,10 +57,16 @@ export class AiCronService {
 
   constructor(
     @Inject('CHAT_MODEL') model: ChatOpenAI,
-    @Inject('QUERY_USER_TOOL') private readonly queryUserTool: Tool
+    @Inject('QUERY_USER_TOOL') private readonly queryUserTool: Tool,
+    @Inject('SEND_MAIL_TOOL') private readonly sendMailTool: Tool,
+    @Inject('WEB_SEARCH_TOOL') private readonly webSearchTool: Tool,
+    @Inject('DB_USERS_CRUD_TOOL') private readonly dbUsersCrudTool: Tool,
   ) {
     this.modelWithTools = model.bindTools([
-      queryUserTool
+      queryUserTool,
+      sendMailTool,
+      webSearchTool,
+      dbUsersCrudTool,
     ])
   }
 
@@ -93,6 +99,33 @@ export class AiCronService {
               tool_call_id: toolCall.id as string
             })
           )
+        } else if (toolCall.name === 'send_mail') {
+          const result = await this.sendMailTool.invoke(toolCall.args)
+
+          messages.push(
+            new ToolMessage({
+              content: result as string,
+              tool_call_id: toolCall.id as string
+            })
+          )
+        } else if (toolCall.name === 'web_search') {
+          const result = await this.webSearchTool.invoke(toolCall.args)
+
+          messages.push(
+            new ToolMessage({
+              content: result as string,
+              tool_call_id: toolCall.id as string
+            })
+          )
+        } else if (toolCall.name === 'db_user_crud') {
+          const result = await this.dbUsersCrudTool.invoke(toolCall.args)
+
+          messages.push(
+            new ToolMessage({
+              content: result as string,
+              tool_call_id: toolCall.id as string
+            })
+          )
         }
       }
     }
@@ -104,19 +137,24 @@ export class AiCronService {
       new HumanMessage(query)
     ]
 
+    console.log('[开始思考]')
     while (true) {
       const stream = await this.modelWithTools.stream(messages)
 
       let fullAIMessage: AIMessageChunk | null = null
 
+      // 一次stream里，往往混合 content 和 tool_calls
       for await (const chunk of stream as AsyncIterable<AIMessageChunk>) {
         fullAIMessage = fullAIMessage ? fullAIMessage.concat(chunk) : chunk
 
         const hasToolCallChunk = !!fullAIMessage.tool_call_chunks && fullAIMessage.tool_call_chunks.length > 0
 
+        // 非function call
         if (!hasToolCallChunk) {
-          // console.log(chunk)
+          // console.log(chunk.content)
           yield chunk.content as string
+        } else {
+          // console.log(chunk.tool_call_chunks)
         }
       }
 
@@ -131,10 +169,38 @@ export class AiCronService {
       }
 
       for (const toolCall of toolCalls) {
+        console.log('[toolCall]' + toolCall.name)
+        console.log(toolCall.args)
         if (toolCall.name === 'query_user') {
-          console.log(toolCall.args)
           const args = queryUserArgsSchema.parse(toolCall.args)
           const result = await this.queryUserTool.invoke(args)
+
+          messages.push(
+            new ToolMessage({
+              content: result as string,
+              tool_call_id: toolCall.id as string
+            })
+          )
+        } else if (toolCall.name === 'send_mail') {
+          const result = await this.sendMailTool.invoke(toolCall.args)
+
+          messages.push(
+            new ToolMessage({
+              content: result as string,
+              tool_call_id: toolCall.id as string
+            })
+          )
+        } else if (toolCall.name === 'web_search') {
+          const result = await this.webSearchTool.invoke(toolCall.args)
+
+          messages.push(
+            new ToolMessage({
+              content: result as string,
+              tool_call_id: toolCall.id as string
+            })
+          )
+        } else if (toolCall.name === 'db_users_crud') {
+          const result = await this.dbUsersCrudTool.invoke(toolCall.args)
 
           messages.push(
             new ToolMessage({
