@@ -114,7 +114,7 @@
         <div class="card">
             <h1>AI SSE Chat 测试</h1>
             <label for="query">输入你的问题：</label>
-            <textarea id="query" placeholder="请输入要发送给 AI 的问题..."></textarea>
+            <textarea id="query" placeholder="请输入要发送给 AI 的问题... (Shift + Enter 发送)"></textarea>
             <div class="controls">
                 <button id="sendBtn">开始对话（SSE）</button>
                 <div class="status" id="status">状态：待机</div>
@@ -130,6 +130,8 @@
         const statusEl = document.getElementById('status');
 
         let es = null;
+        let pendingText = '';
+        let rafId = null;
 
         function closeEventSource() {
             if (es) {
@@ -137,7 +139,31 @@
                 es = null;
             }
 
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+
+            // Flush remaining pending text if any
+            if (pendingText) {
+                outputEl.textContent += pendingText;
+                pendingText = '';
+                outputEl.scrollTop = outputEl.scrollHeight;
+            }
+
             sendBtn.disabled = false;
+        }
+
+        function scheduleUpdate() {
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+                rafId = null;
+                if (pendingText) {
+                    outputEl.textContent += pendingText;
+                    pendingText = '';
+                    outputEl.scrollTop = outputEl.scrollHeight;
+                }
+            });
         }
 
         sendBtn.onclick = () => {
@@ -149,6 +175,7 @@
 
             closeEventSource();
             outputEl.textContent = '';
+            pendingText = '';
             sendBtn.disabled = true;
             statusEl.textContent = '状态：连接中…';
 
@@ -160,8 +187,8 @@
             };
 
             es.onmessage = (event) => {
-                // 后端每个 chunk 用 data 发过来
-                outputEl.textContent += event.data;
+                pendingText += event.data;
+                scheduleUpdate();
             };
 
             es.onerror = () => {
@@ -169,6 +196,15 @@
                 closeEventSource();
             };
         };
+
+        queryInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.shiftKey) {
+                e.preventDefault();
+                if (!sendBtn.disabled) {
+                    sendBtn.click();
+                }
+            }
+        });
 
         window.addEventListener('beforeunload', closeEventSource);
     </script>

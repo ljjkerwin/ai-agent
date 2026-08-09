@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Inject, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
@@ -10,12 +10,18 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
+import { ScheduleModule, SchedulerRegistry } from '@nestjs/schedule';
+import { CronJob } from 'cron';
+import { CronExpression } from '@nestjs/schedule';
+import { JobModule } from './job/job.module';
+import { Job } from './job/entities/job.entity';
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public')
     }),
+    ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
@@ -27,7 +33,10 @@ import { User } from './users/entities/user.entity';
         synchronize: true,
         connectorPackage: 'mysql2',
         // logging: true,
-        entities: [User]
+        entities: [
+          User,
+          Job,
+        ]
       })
     }),
     BookModule,
@@ -54,8 +63,50 @@ import { User } from './users/entities/user.entity';
       }),
     }),
     UsersModule,
+    JobModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {
+  @Inject(SchedulerRegistry)
+  schedulerRegistry: SchedulerRegistry
+
+  // async onApplicationBootstrap() {
+  //   const job = new CronJob(CronExpression.EVERY_SECOND, () => {
+  //     console.log(('run job'))
+  //   })
+
+  //   this.schedulerRegistry.addCronJob('job1', job)
+
+  //   job.start()
+
+  //   setTimeout(() => {
+  //     this.schedulerRegistry.deleteCronJob('job1')
+  //   }, 5000)
+
+  //   const intercalRef = setInterval(() => {
+  //     console.log('run interval job')
+  //   }, 1000)
+
+  //   this.schedulerRegistry.addInterval('interval1', intercalRef)
+
+  //   setTimeout(() => {
+  //     this.schedulerRegistry.deleteInterval('interval1')
+  //   }, 7000)
+
+
+
+
+
+  //   const timeoutRef = setTimeout(() => {
+  //     console.log('run timeout')
+  //   }, 3000)
+
+  //   this.schedulerRegistry.addTimeout('timeout1', timeoutRef)
+
+  //   setTimeout(() => {
+  //     this.schedulerRegistry.deleteTimeout('timeout1')
+  //   }, 2000)
+  // }
+}
