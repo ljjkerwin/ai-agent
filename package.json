@@ -19,6 +19,7 @@
     "@modelcontextprotocol/sdk": "^1.30.0",
     "@types/node": "^26.1.2",
     "@zilliz/milvus2-sdk-node": "^3.0.4",
+    "axios": "^1.19.0",
     "chalk": "^6.0.0",
     "cheerio": "^1.2.0",
     "dotenv": "^17.4.2",
@@ -26,6 +27,7 @@
     "html-to-text": "^10.0.0",
     "js-tiktoken": "^1.0.21",
     "mysql2": "^3.23.2",
+    "openai": "^7.4.0",
     "zod": "^4.4.3",
     "zod-to-json-schema": "^3.25.2"
   }
