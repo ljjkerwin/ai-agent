@@ -108,21 +108,58 @@
             btn.disabled = true;
             status.textContent = "连接中...";
 
+            let pendingText = '';
+            let rafId = null;
+
+            function scheduleUpdate() {
+                if (rafId) return;
+                rafId = requestAnimationFrame(() => {
+                    rafId = null;
+                    if (pendingText) {
+                        output.textContent += pendingText;
+                        pendingText = '';
+                    }
+                });
+            }
+
             const eventSource = new EventSource(url);
 
             eventSource.onmessage = ({ data }) => {
-                output.textContent += data;
+                if (data === '[DONE]') {
+                    eventSource.close();
+                    btn.disabled = false;
+                    status.textContent = "完成";
+                    return;
+                }
+                pendingText += data;
                 status.textContent = "接收中...";
+                scheduleUpdate();
             };
 
             eventSource.onerror = () => {
                 eventSource.close();
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+                if (pendingText) {
+                    output.textContent += pendingText;
+                    pendingText = '';
+                }
                 btn.disabled = false;
                 status.textContent = "连接已结束";
             };
 
             eventSource.addEventListener("done", () => {
                 eventSource.close();
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+                if (pendingText) {
+                    output.textContent += pendingText;
+                    pendingText = '';
+                }
                 btn.disabled = false;
                 status.textContent = "完成";
             });

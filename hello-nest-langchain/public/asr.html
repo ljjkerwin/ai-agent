@@ -102,7 +102,9 @@
                         setStatus("上传失败");
                         resultEl.textContent = "错误：" + (error.message || String(error));
                     } finally {
-                        stream.getTracks().forEach((t) => t.stop());
+                        if (stream) {
+                            stream.getTracks().forEach((t) => t.stop());
+                        }
                     }
                 };
 

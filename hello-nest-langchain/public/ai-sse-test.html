@@ -187,6 +187,11 @@
             };
 
             es.onmessage = (event) => {
+                if (event.data === '[DONE]') {
+                    statusEl.textContent = '状态：接收完成';
+                    closeEventSource();
+                    return;
+                }
                 pendingText += event.data;
                 scheduleUpdate();
             };

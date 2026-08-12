@@ -489,15 +489,34 @@
                     (ttsSessionId ? "&ttsSessionId=" + encodeURIComponent(ttsSessionId) : "");
                 const es = new EventSource(url);
                 let aiResult = "";
+                let pendingText = "";
+                let rafId = null;
                 activeStream = es;
 
-                es.onmessage = (event) => {
-                    aiResult += event.data || "";
-                    activeAssistantContentEl.textContent = aiResult || "（空结果）";
-                    scrollToBottom();
-                };
+                function scheduleUpdate() {
+                    if (rafId) return;
+                    rafId = requestAnimationFrame(() => {
+                        rafId = null;
+                        if (pendingText) {
+                            aiResult += pendingText;
+                            pendingText = "";
+                            activeAssistantContentEl.textContent = aiResult || "（空结果）";
+                            scrollToBottom();
+                        }
+                    });
+                }
 
-                es.onerror = () => {
+                function finishStream() {
+                    if (rafId) {
+                        cancelAnimationFrame(rafId);
+                        rafId = null;
+                    }
+                    if (pendingText) {
+                        aiResult += pendingText;
+                        pendingText = "";
+                        activeAssistantContentEl.textContent = aiResult || "（空结果）";
+                        scrollToBottom();
+                    }
                     es.close();
                     if (activeStream === es) {
                         activeStream = null;
@@ -506,6 +525,19 @@
                         activeAssistantMetaEl.textContent = "AI 回复完成 " + nowTime();
                     }
                     resolve(aiResult);
+                }
+
+                es.onmessage = (event) => {
+                    if (event.data === '[DONE]') {
+                        finishStream();
+                        return;
+                    }
+                    pendingText += event.data || "";
+                    scheduleUpdate();
+                };
+
+                es.onerror = () => {
+                    finishStream();
                 };
             });
         }
