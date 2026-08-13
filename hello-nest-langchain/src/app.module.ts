@@ -15,11 +15,12 @@ import { CronJob } from 'cron';
 import { CronExpression } from '@nestjs/schedule';
 import { JobModule } from './job/job.module';
 import { Job } from './job/entities/job.entity';
+import { Book } from './book/entities/book.entity';
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public')
+      rootPath: join(__dirname, 'public')
     }),
     ScheduleModule.forRoot(),
     TypeOrmModule.forRootAsync({
@@ -36,6 +37,7 @@ import { Job } from './job/entities/job.entity';
         entities: [
           User,
           Job,
+          Book,
         ]
       })
     }),

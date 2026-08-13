@@ -17,7 +17,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "docker:build": "docker build -t hello-nest .",
+    "docker:run": "docker run -it --rm --env-file .env -p 3000:3000 --name hello-nest -d hello-nest",
+    "docker:stop": "docker stop hello-nest"
   },
   "dependencies": {
     "@ai-sdk/langchain": "^3.0.62",
