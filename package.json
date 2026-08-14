@@ -29,6 +29,7 @@
     "html-to-text": "^10.0.0",
     "js-tiktoken": "^1.0.21",
     "mysql2": "^3.23.2",
+    "neo4j-driver": "^6.2.0",
     "openai": "^7.4.0",
     "zod": "^4.4.3",
     "zod-to-json-schema": "^3.25.2"
