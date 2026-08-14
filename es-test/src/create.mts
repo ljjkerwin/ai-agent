@@ -1,4 +1,4 @@
-import getClient from './getClient.mts';
+import getClient from './utils/getEsClient.mts';
 
 const client = getClient()
 

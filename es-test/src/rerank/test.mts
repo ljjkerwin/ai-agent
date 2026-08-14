@@ -1,10 +1,10 @@
 import "dotenv/config";
 import { Document } from "@langchain/core/documents";
 import { DashScopeRerank } from "./dsahscope-rerank.mts";
+import getReranker from "../utils/getReranker.mts";
 
 async function main() {
-    const compressor = new DashScopeRerank({
-    });
+    const compressor = getReranker()
 
     const query = "什么是文本排序模型";
     const docs = [
