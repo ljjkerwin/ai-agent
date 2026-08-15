@@ -16,7 +16,7 @@ importers:
         version: 1.0.40(@aws-sdk/credential-provider-node@3.972.77)(@langchain/core@1.2.8(@opentelemetry/api@1.9.1)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7))(@opentelemetry/api@1.9.1)(@smithy/signature-v4@5.6.12)(cheerio@1.2.0)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7)
       '@langchain/community':
         specifier: ^1.1.29
-        version: 1.1.29(@aws-sdk/client-s3@3.1102.0)(@aws-sdk/credential-provider-node@3.972.77)(@browserbasehq/sdk@2.18.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.62.1)(deepmerge@4.3.1)(dotenv@17.4.2)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(zod@4.4.3))(@elastic/elasticsearch@8.19.2)(@ibm-cloud/watsonx-ai@1.7.16)(@langchain/core@1.2.8(@opentelemetry/api@1.9.1)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7))(@opentelemetry/api@1.9.1)(@smithy/signature-v4@5.6.12)(@zilliz/milvus2-sdk-node@3.0.4)(cheerio@1.2.0)(epub2@3.0.2(ts-toolbelt@9.6.0))(html-to-text@10.0.0)(ibm-cloud-sdk-core@5.6.0)(jsonwebtoken@9.0.3)(lodash@4.18.1)(mysql2@3.23.2(@types/node@26.1.2))(neo4j-driver@6.2.0)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(playwright@1.62.1)(ws@5.2.7)
+        version: 1.1.29(@aws-sdk/client-s3@3.1102.0)(@aws-sdk/credential-provider-node@3.972.77)(@browserbasehq/sdk@2.18.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.62.1)(deepmerge@4.3.1)(dotenv@17.4.2)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(zod@4.4.3))(@elastic/elasticsearch@8.19.2)(@ibm-cloud/watsonx-ai@1.7.16)(@langchain/core@1.2.8(@opentelemetry/api@1.9.1)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7))(@opentelemetry/api@1.9.1)(@smithy/signature-v4@5.6.12)(@zilliz/milvus2-sdk-node@3.0.4)(cheerio@1.2.0)(epub2@3.0.2(ts-toolbelt@9.6.0))(html-to-text@10.0.0)(ibm-cloud-sdk-core@5.6.0)(jsonwebtoken@9.0.3)(lodash@4.18.1)(mysql2@3.23.2(@types/node@26.1.2))(neo4j-driver@6.2.0)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(pg@8.23.0)(playwright@1.62.1)(ws@5.2.7)
       '@langchain/core':
         specifier: ^1.2.8
         version: 1.2.8(@opentelemetry/api@1.9.1)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7)
@@ -41,6 +41,9 @@ importers:
       '@types/node':
         specifier: ^26.1.2
         version: 26.1.2
+      '@types/pg':
+        specifier: ^8.21.0
+        version: 8.21.0
       '@zilliz/milvus2-sdk-node':
         specifier: ^3.0.4
         version: 3.0.4
@@ -89,6 +92,9 @@ importers:
       openevals:
         specifier: ^0.2.0
         version: 0.2.0(@aws-sdk/credential-provider-node@3.972.77)(@langchain/core@1.2.8(@opentelemetry/api@1.9.1)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7))(@opentelemetry/api@1.9.1)(@smithy/signature-v4@5.6.12)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7)(zod@4.4.3)
+      pg:
+        specifier: ^8.23.0
+        version: 8.23.0
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -854,6 +860,9 @@ packages:
 
   '@types/node@26.1.2':
     resolution: {integrity: sha512-Vu4a5UFA9rIIFJ7rB/Vaafh9lrCQszopTCx6KjFboXTGQbPNasehVR5TEiithSDGyd1DEiUByggTZsg8jukeIg==}
+
+  '@types/pg@8.21.0':
+    resolution: {integrity: sha512-AYdtudzabjLZgVgRZmAnU8bAnVUXzuJX2IYHeSIiIHm68olD+LgQYCGWdtcNYnP0uq9c4S4NibVG3Ni7VbKW7Q==}
 
   '@types/q@1.5.8':
     resolution: {integrity: sha512-hroOstUScF6zhIi+5+x0dzqrHA1EJi+Irri6b1fxolMTqqHIV/Cg77EtnQcZqZCu8hR3mX2BzIxN4/GzI68Kfw==}
@@ -1851,6 +1860,40 @@ packages:
   peberminta@0.10.0:
     resolution: {integrity: sha512-80B2AsU+I4Qdb0ZAPSfe9UwvGzwkM37IKIFEvdS3D/3Ndgv2bsuJ0bfG1+iEYO+l7Gfd4EUJmuRyq7efLgRMzQ==}
 
+  pg-cloudflare@1.4.0:
+    resolution: {integrity: sha512-Vo7z/6rrQYxpNRylp4Tlob2elzbh+N/MOQbxFVWCxS7oEx6jF53GTJFxK2WWpKuBRkmiin4Mt+xofFDjx09R0A==}
+
+  pg-connection-string@2.14.0:
+    resolution: {integrity: sha512-XwWDGcLRGCXAR8F/AM5bG7Q+A3Wm2s6QeEjlOKZLlH3UYcguiqCWKyWXVag5TLTIjR7oOJUY8kcADaZgWPyLeg==}
+
+  pg-int8@1.0.1:
+    resolution: {integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==}
+    engines: {node: '>=4.0.0'}
+
+  pg-pool@3.14.0:
+    resolution: {integrity: sha512-gKtPkFdQPU3DksooVLi9LsjZxrsBUZIpa+7aVx+LV5pNh0KzP4Zleud2po+ConrxbuXGBJ6Hfer6hdgpIBpBaw==}
+    peerDependencies:
+      pg: '>=8.0'
+
+  pg-protocol@1.16.0:
+    resolution: {integrity: sha512-sILXutLVjCLjcDuOmvhX5e2Z4cS5qG/6Bu3VkpFwdf/633ElGLpEh9bgmuI5I4sqKqkifQiGyiCcx1HdtrK7tg==}
+
+  pg-types@2.2.0:
+    resolution: {integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==}
+    engines: {node: '>=4'}
+
+  pg@8.23.0:
+    resolution: {integrity: sha512-Ip2EQCngowJLGOfCwkFhPXU7/ljlhn6Rxlmy4XYfL2Y+vyRM59+8uR2xqRWKdYmbXmxCFOAmKxBuSUCdF34qLg==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      pg-native: '>=3.0.1'
+    peerDependenciesMeta:
+      pg-native:
+        optional: true
+
+  pgpass@1.0.5:
+    resolution: {integrity: sha512-FdW9r/jQZhSeohs1Z3sI1yxFQNFvMcnmfuj4WBMUTxOrAyLMaTcE1aAMBiTlbMNaXvBCQuVi0R7hd8udDSP7ug==}
+
   picomatch@2.3.2:
     resolution: {integrity: sha512-V7+vQEJ06Z+c5tSye8S+nHUfI51xoXIXjHQ99cQtKUkQqqO1kO/KCJUfZXuB47h/YBlDhah2H3hdUGXn8ie0oA==}
     engines: {node: '>=8.6'}
@@ -1872,6 +1915,22 @@ packages:
     resolution: {integrity: sha512-0M+L3LAD8/nm554LOla9Ayx0j0tmFZ0FBcoQ7F1VuVHpM/XpiC8RcDzBQB8W5+hA8L22THxELzeF+2WcUzvcLg==}
     engines: {node: '>=20'}
     hasBin: true
+
+  postgres-array@2.0.0:
+    resolution: {integrity: sha512-VpZrUqU5A69eQyW2c5CA1jtLecCsN2U/bD6VilrFDWq5+5UIEVO7nazS3TEcHf1zuPYO/sqGvUvW62g86RXZuA==}
+    engines: {node: '>=4'}
+
+  postgres-bytea@1.0.1:
+    resolution: {integrity: sha512-5+5HqXnsZPE65IJZSMkZtURARZelel2oXUEO8rH83VS/hxH5vv1uHquPg5wZs8yMAfdv971IU+kcPUczi7NVBQ==}
+    engines: {node: '>=0.10.0'}
+
+  postgres-date@1.0.7:
+    resolution: {integrity: sha512-suDmjLVQg78nMK2UZ454hAG+OAW+HQPZ6n++TNDUX+L0+uUlLywnoxJKDou51Zm+zTCjrCl0Nq6J9C5hP9vK/Q==}
+    engines: {node: '>=0.10.0'}
+
+  postgres-interval@1.2.0:
+    resolution: {integrity: sha512-9ZhXKM/rw350N1ovuWHbGxnGh/SNJ4cnxHiM0rxE4VN41wsg8P8zWn9hv/buK00RP4WvlOyr/RBDiptyxVbkZQ==}
+    engines: {node: '>=0.10.0'}
 
   prettier@3.9.6:
     resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
@@ -2039,6 +2098,10 @@ packages:
   source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+
+  split2@4.2.0:
+    resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
+    engines: {node: '>= 10.x'}
 
   sql-escaper@1.5.1:
     resolution: {integrity: sha512-4toX5E1fQbBrpfXidaHnF0669nkAdETeIPTs2SUjxxD7RRIs9ICG4gtpmfc68JCEKehsdwLFqBu9VlQqZ1P1gg==}
@@ -2258,6 +2321,10 @@ packages:
   xmlbuilder@11.0.1:
     resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
     engines: {node: '>=4.0'}
+
+  xtend@4.0.2:
+    resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
+    engines: {node: '>=0.4'}
 
   xxhash-wasm@1.1.0:
     resolution: {integrity: sha512-147y/6YNh+tlp6nd/2pWq38i9h6mz/EuQ6njIrmW8D1BS5nCqs0P6DG+m6zTGnNz5I+uhZ0SHxBs9BsPrwcKDA==}
@@ -2608,7 +2675,7 @@ snapshots:
       - openai
       - ws
 
-  '@langchain/community@1.1.29(@aws-sdk/client-s3@3.1102.0)(@aws-sdk/credential-provider-node@3.972.77)(@browserbasehq/sdk@2.18.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.62.1)(deepmerge@4.3.1)(dotenv@17.4.2)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(zod@4.4.3))(@elastic/elasticsearch@8.19.2)(@ibm-cloud/watsonx-ai@1.7.16)(@langchain/core@1.2.8(@opentelemetry/api@1.9.1)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7))(@opentelemetry/api@1.9.1)(@smithy/signature-v4@5.6.12)(@zilliz/milvus2-sdk-node@3.0.4)(cheerio@1.2.0)(epub2@3.0.2(ts-toolbelt@9.6.0))(html-to-text@10.0.0)(ibm-cloud-sdk-core@5.6.0)(jsonwebtoken@9.0.3)(lodash@4.18.1)(mysql2@3.23.2(@types/node@26.1.2))(neo4j-driver@6.2.0)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(playwright@1.62.1)(ws@5.2.7)':
+  '@langchain/community@1.1.29(@aws-sdk/client-s3@3.1102.0)(@aws-sdk/credential-provider-node@3.972.77)(@browserbasehq/sdk@2.18.0)(@browserbasehq/stagehand@1.14.0(@playwright/test@1.62.1)(deepmerge@4.3.1)(dotenv@17.4.2)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(zod@4.4.3))(@elastic/elasticsearch@8.19.2)(@ibm-cloud/watsonx-ai@1.7.16)(@langchain/core@1.2.8(@opentelemetry/api@1.9.1)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(ws@5.2.7))(@opentelemetry/api@1.9.1)(@smithy/signature-v4@5.6.12)(@zilliz/milvus2-sdk-node@3.0.4)(cheerio@1.2.0)(epub2@3.0.2(ts-toolbelt@9.6.0))(html-to-text@10.0.0)(ibm-cloud-sdk-core@5.6.0)(jsonwebtoken@9.0.3)(lodash@4.18.1)(mysql2@3.23.2(@types/node@26.1.2))(neo4j-driver@6.2.0)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(pg@8.23.0)(playwright@1.62.1)(ws@5.2.7)':
     dependencies:
       '@browserbasehq/stagehand': 1.14.0(@playwright/test@1.62.1)(deepmerge@4.3.1)(dotenv@17.4.2)(openai@7.4.0(@aws-sdk/credential-provider-node@3.972.77)(@smithy/signature-v4@5.6.12)(ws@5.2.7)(zod@4.4.3))(zod@4.4.3)
       '@ibm-cloud/watsonx-ai': 1.7.16
@@ -2638,6 +2705,7 @@ snapshots:
       lodash: 4.18.1
       mysql2: 3.23.2(@types/node@26.1.2)
       neo4j-driver: 6.2.0
+      pg: 8.23.0
       playwright: 1.62.1
       ws: 5.2.7
     transitivePeerDependencies:
@@ -2922,6 +2990,12 @@ snapshots:
   '@types/node@26.1.2':
     dependencies:
       undici-types: 8.3.0
+
+  '@types/pg@8.21.0':
+    dependencies:
+      '@types/node': 26.1.2
+      pg-protocol: 1.16.0
+      pg-types: 2.2.0
 
   '@types/q@1.5.8': {}
 
@@ -3933,6 +4007,41 @@ snapshots:
 
   peberminta@0.10.0: {}
 
+  pg-cloudflare@1.4.0:
+    optional: true
+
+  pg-connection-string@2.14.0: {}
+
+  pg-int8@1.0.1: {}
+
+  pg-pool@3.14.0(pg@8.23.0):
+    dependencies:
+      pg: 8.23.0
+
+  pg-protocol@1.16.0: {}
+
+  pg-types@2.2.0:
+    dependencies:
+      pg-int8: 1.0.1
+      postgres-array: 2.0.0
+      postgres-bytea: 1.0.1
+      postgres-date: 1.0.7
+      postgres-interval: 1.2.0
+
+  pg@8.23.0:
+    dependencies:
+      pg-connection-string: 2.14.0
+      pg-pool: 3.14.0(pg@8.23.0)
+      pg-protocol: 1.16.0
+      pg-types: 2.2.0
+      pgpass: 1.0.5
+    optionalDependencies:
+      pg-cloudflare: 1.4.0
+
+  pgpass@1.0.5:
+    dependencies:
+      split2: 4.2.0
+
   picomatch@2.3.2: {}
 
   picomatch@4.0.5: {}
@@ -3946,6 +4055,16 @@ snapshots:
       playwright-core: 1.62.1
     optionalDependencies:
       fsevents: 2.3.2
+
+  postgres-array@2.0.0: {}
+
+  postgres-bytea@1.0.1: {}
+
+  postgres-date@1.0.7: {}
+
+  postgres-interval@1.2.0:
+    dependencies:
+      xtend: 4.0.2
 
   prettier@3.9.6: {}
 
@@ -4134,6 +4253,8 @@ snapshots:
   snappyjs@0.7.0: {}
 
   source-map@0.6.1: {}
+
+  split2@4.2.0: {}
 
   sql-escaper@1.5.1: {}
 
@@ -4325,6 +4446,8 @@ snapshots:
       xmlbuilder: 11.0.1
 
   xmlbuilder@11.0.1: {}
+
+  xtend@4.0.2: {}
 
   xxhash-wasm@1.1.0: {}
 
