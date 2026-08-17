@@ -36,6 +36,7 @@
     "js-tiktoken": "^1.0.21",
     "langchain": "^1.5.9",
     "langsmith": "^0.8.11",
+    "mem0ai": "^3.1.6",
     "mysql2": "^3.23.2",
     "neo4j-driver": "^6.2.0",
     "openai": "^7.4.0",
