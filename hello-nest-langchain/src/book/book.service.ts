@@ -3,11 +3,20 @@ import { EntityManager } from 'typeorm';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { Book } from './entities/book.entity';
+import { MarkService } from './mark.service';
 
 @Injectable()
 export class BookService {
   @Inject(EntityManager)
   private readonly entityManager: EntityManager;
+
+  // @Inject(MarkService)
+  // private readonly markService: MarkService
+
+  constructor(
+    private readonly markService: MarkService
+  ) {
+  }
 
   async create(createBookDto: CreateBookDto) {
     const book = this.entityManager.create(Book, {
@@ -18,6 +27,7 @@ export class BookService {
   }
 
   async findAll() {
+    // return this.markService.findAll()
     return this.entityManager.find(Book, {
       order: { id: 'DESC' },
     });

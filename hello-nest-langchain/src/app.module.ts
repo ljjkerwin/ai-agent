@@ -16,9 +16,19 @@ import { CronExpression } from '@nestjs/schedule';
 import { JobModule } from './job/job.module';
 import { Job } from './job/entities/job.entity';
 import { Book } from './book/entities/book.entity';
+import { AuthModule } from './auth/auth.module';
+import { JwtTestModule } from './jwt-test/jwt-test.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    AuthModule,
+    JwtTestModule,
+    JwtModule.register({
+      global: true,
+      secret: 'jwt-test-secret-key',
+      signOptions: { expiresIn: '1h' },
+    }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, 'public')
     }),
