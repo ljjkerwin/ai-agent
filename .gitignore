@@ -6,3 +6,4 @@ volumes/
 .agents
 workspace
 conversation_history
+rabbitmq-data
